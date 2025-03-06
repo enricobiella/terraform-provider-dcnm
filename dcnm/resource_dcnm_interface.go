@@ -684,7 +684,7 @@ func resourceDCNMInterfaceCreate(d *schema.ResourceData, m interface{}) error {
 		}
 		if p1Avlan, ok := d.GetOk("vpc_peer1_access_vlans"); ok {
 			nvPairMap["PEER1_ACCESS_VLAN"] = p1Avlan.(string)
-			if nvPairMap["PEER1_ACCESS_VLAN"] == nil {
+			if nvPairMap["PEER1_ACCESS_VLAN"] == "null" {
 				nvPairMap["PEER1_ACCESS_VLAN"] = ""
 			}
 		} else {
@@ -692,7 +692,7 @@ func resourceDCNMInterfaceCreate(d *schema.ResourceData, m interface{}) error {
 		}
 		if p2Avlan, ok := d.GetOk("vpc_peer2_access_vlans"); ok {
 			nvPairMap["PEER2_ACCESS_VLAN"] = p2Avlan.(string)
-			if nvPairMap["PEER2_ACCESS_VLAN"] == nil {
+			if nvPairMap["PEER2_ACCESS_VLAN"] == "null" {
 				nvPairMap["PEER2_ACCESS_VLAN"] = ""
 			}
 		} else {
@@ -755,7 +755,7 @@ func resourceDCNMInterfaceCreate(d *schema.ResourceData, m interface{}) error {
 		}
 		if accVlans, ok := d.GetOk("access_vlans"); ok {
 			nvPairMap["ACCESS_VLAN"] = accVlans.(string)
-			if nvPairMap["ACCESS_VLAN"] == nil {
+			if nvPairMap["ACCESS_VLAN"] == "null" {
 				nvPairMap["ACCESS_VLAN"] = ""
 			}
 		} else {
@@ -1025,7 +1025,7 @@ func resourceDCNMInterfaceUpdate(d *schema.ResourceData, m interface{}) error {
 		}
 		if p1Avlan, ok := d.GetOk("vpc_peer1_access_vlans"); ok {
 			nvPairMap["PEER1_ACCESS_VLAN"] = p1Avlan.(string)
-			if nvPairMap["PEER1_ACCESS_VLAN"] == nil {
+			if nvPairMap["PEER1_ACCESS_VLAN"] == "null" {
 				nvPairMap["PEER1_ACCESS_VLAN"] = ""
 			}
 		} else {
@@ -1033,7 +1033,7 @@ func resourceDCNMInterfaceUpdate(d *schema.ResourceData, m interface{}) error {
 		}
 		if p2Avlan, ok := d.GetOk("vpc_peer2_access_vlans"); ok {
 			nvPairMap["PEER2_ACCESS_VLAN"] = p2Avlan.(string)
-			if nvPairMap["PEER1_ACCESS_VLAN"] == nil {
+			if nvPairMap["PEER1_ACCESS_VLAN"] == "null" {
 				nvPairMap["PEER1_ACCESS_VLAN"] = ""
 			}
 		} else {
@@ -1094,7 +1094,7 @@ func resourceDCNMInterfaceUpdate(d *schema.ResourceData, m interface{}) error {
 		}
 		if accVlans, ok := d.GetOk("access_vlans"); ok {
 			nvPairMap["ACCESS_VLAN"] = accVlans.(string)
-			if nvPairMap["ACCESS_VLAN"] == nil {
+			if nvPairMap["ACCESS_VLAN"] == "null" {
 				nvPairMap["ACCESS_VLAN"] = ""
 			}
 		} else {
@@ -1211,10 +1211,13 @@ func resourceDCNMInterfaceUpdate(d *schema.ResourceData, m interface{}) error {
 		} else {
 			nvPairMap["IPv6_PREFIX"] = ""
 		}
-		if isFieldSet := d.GetRawConfig().AsValueMap()["ACCESS_VLAN"].IsNull(); isFieldSet {
+		if accVlans, ok := d.GetOk("access_vlans"); ok {
+			nvPairMap["ACCESS_VLAN"] = accVlans.(string)
+			if nvPairMap["ACCESS_VLAN"] == "null" {
+				nvPairMap["ACCESS_VLAN"] = ""
+			}
+		} else {
 			nvPairMap["ACCESS_VLAN"] = ""
-		}else {
-			nvPairMap["ACCESS_VLAN"] =  d.GetRawConfig().AsValueMap()["ACCESS_VLAN"].(string)
 		}
 		if desc, ok := d.GetOk("description"); ok {
 			nvPairMap["DESC"] = desc.(string)
