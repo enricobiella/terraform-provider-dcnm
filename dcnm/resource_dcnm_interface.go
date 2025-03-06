@@ -1211,13 +1211,10 @@ func resourceDCNMInterfaceUpdate(d *schema.ResourceData, m interface{}) error {
 		} else {
 			nvPairMap["IPv6_PREFIX"] = ""
 		}
-		if accVlans, ok := d.GetOk("access_vlans"); ok {
-			nvPairMap["ACCESS_VLAN"] = accVlans.(string)
-			if nvPairMap["ACCESS_VLAN"] == nil {
-				nvPairMap["ACCESS_VLAN"] = ""
-			}
-		} else {
+		if isFieldSet := d.GetRawConfig().AsValueMap()["ACCESS_VLAN"].IsNull(); isFieldSet {
 			nvPairMap["ACCESS_VLAN"] = ""
+		}else {
+			nvPairMap["ACCESS_VLAN"] =  d.GetRawConfig().AsValueMap()["ACCESS_VLAN"].(string)
 		}
 		if desc, ok := d.GetOk("description"); ok {
 			nvPairMap["DESC"] = desc.(string)
