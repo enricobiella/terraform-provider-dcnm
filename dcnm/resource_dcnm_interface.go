@@ -684,11 +684,17 @@ func resourceDCNMInterfaceCreate(d *schema.ResourceData, m interface{}) error {
 		}
 		if p1Avlan, ok := d.GetOk("vpc_peer1_access_vlans"); ok {
 			nvPairMap["PEER1_ACCESS_VLAN"] = p1Avlan.(string)
+			if nvPairMap["PEER1_ACCESS_VLAN"] == nil {
+				nvPairMap["PEER1_ACCESS_VLAN"] = ""
+			}
 		} else {
 			nvPairMap["PEER1_ACCESS_VLAN"] = ""
 		}
 		if p2Avlan, ok := d.GetOk("vpc_peer2_access_vlans"); ok {
 			nvPairMap["PEER2_ACCESS_VLAN"] = p2Avlan.(string)
+			if nvPairMap["PEER2_ACCESS_VLAN"] == nil {
+				nvPairMap["PEER2_ACCESS_VLAN"] = ""
+			}
 		} else {
 			nvPairMap["PEER2_ACCESS_VLAN"] = ""
 		}
@@ -749,6 +755,9 @@ func resourceDCNMInterfaceCreate(d *schema.ResourceData, m interface{}) error {
 		}
 		if accVlans, ok := d.GetOk("access_vlans"); ok {
 			nvPairMap["ACCESS_VLAN"] = accVlans.(string)
+			if nvPairMap["ACCESS_VLAN"] == nil {
+				nvPairMap["ACCESS_VLAN"] = ""
+			}
 		} else {
 			nvPairMap["ACCESS_VLAN"] = ""
 		}
@@ -1016,11 +1025,17 @@ func resourceDCNMInterfaceUpdate(d *schema.ResourceData, m interface{}) error {
 		}
 		if p1Avlan, ok := d.GetOk("vpc_peer1_access_vlans"); ok {
 			nvPairMap["PEER1_ACCESS_VLAN"] = p1Avlan.(string)
+			if nvPairMap["PEER1_ACCESS_VLAN"] == nil {
+				nvPairMap["PEER1_ACCESS_VLAN"] = ""
+			}
 		} else {
 			nvPairMap["PEER1_ACCESS_VLAN"] = ""
 		}
 		if p2Avlan, ok := d.GetOk("vpc_peer2_access_vlans"); ok {
 			nvPairMap["PEER2_ACCESS_VLAN"] = p2Avlan.(string)
+			if nvPairMap["PEER1_ACCESS_VLAN"] == nil {
+				nvPairMap["PEER1_ACCESS_VLAN"] = ""
+			}
 		} else {
 			nvPairMap["PEER2_ACCESS_VLAN"] = ""
 		}
@@ -1079,6 +1094,9 @@ func resourceDCNMInterfaceUpdate(d *schema.ResourceData, m interface{}) error {
 		}
 		if accVlans, ok := d.GetOk("access_vlans"); ok {
 			nvPairMap["ACCESS_VLAN"] = accVlans.(string)
+			if nvPairMap["ACCESS_VLAN"] == nil {
+				nvPairMap["ACCESS_VLAN"] = ""
+			}
 		} else {
 			nvPairMap["ACCESS_VLAN"] = ""
 		}
@@ -1195,6 +1213,9 @@ func resourceDCNMInterfaceUpdate(d *schema.ResourceData, m interface{}) error {
 		}
 		if accVlans, ok := d.GetOk("access_vlans"); ok {
 			nvPairMap["ACCESS_VLAN"] = accVlans.(string)
+			if nvPairMap["ACCESS_VLAN"] == nil {
+				nvPairMap["ACCESS_VLAN"] = ""
+			}
 		} else {
 			nvPairMap["ACCESS_VLAN"] = ""
 		}
