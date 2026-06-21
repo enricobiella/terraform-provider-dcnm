@@ -1,5 +1,10 @@
 # Cisco DCNM Provider
 
+
+Fix
+------------
+Fix some functions in order to create VRFs and Networks properly.
+
 Requirements
 ------------
 
